@@ -1,0 +1,65 @@
+﻿@model ML.Movie
+@{
+    ViewData["Title"] = "Favoritos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/css/CardTemplate.css" />
+
+    <section class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center mb-5">
+                    <h1 class="display-4 font-weight-bolder fst-italic">
+                        <font face="impact">
+                            MIS FAVORITOS
+                        </font>
+                    </h1>
+                </div>
+            </div>
+            <hr style="color:aliceblue" />
+
+                @foreach (ML.Movie movies in Model.Movies)
+                {
+                    <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                        <div class="card text-dark card-has-bg click-col" style="background-image:url('@movies.poster_path');">
+                            <img class="card-img d-none" src="@movies.backdrop_path" alt="@movies.overview">
+                            <div class="card-img-overlay d-flex flex-column">
+                                <div class="card-body">
+                                    <br>
+                                    <h4 class="card-title mt-0 "><a class="text-dark" herf="https://creativemanner.com">@movies.title</a></h4>
+                                    <small class="card-meta mb-2">Idioma: @movies.original_language</small>
+                                    <br>
+                                    <small><i class="far fa-clock"></i>@movies.release_date.ToString("dd/MMMM/yyyy")</small>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="media">
+                                        <img class="mr-3 rounded-circle fw-bold" src="/Icons/popularity.png" alt="Generic placeholder image" style="max-width:50px">
+                                        <div class="media-body">
+                                            <h6 class="my-0 text-dark d-block fw-bold">@movies.popularity</h6>
+                                            <small>@movies.vote_average</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <p style="color:azure;" class="align-text-top"> @movies.overview</p>
+                    </div>
+
+                </div>
+                    </div>
+                   
+                    
+                    <br />
+
+
+                }
+
+        </div>
+    </section>
